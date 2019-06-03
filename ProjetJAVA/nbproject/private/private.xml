@@ -3,7 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/projetjava/ProjetJAVA.java</file>
+            <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Vue/Fenetre.java</file>
+            <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Controlleur/Connexion.java</file>
             <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Modele/Trimestre.java</file>
             <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Controlleur/Test.java</file>
             <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Modele/Classe.java</file>
@@ -11,7 +12,6 @@
             <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Modele/Eleve.java</file>
             <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Modele/Bulletin.java</file>
             <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Modele/Notes.java</file>
-            <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Vue/TestJFrame.java</file>
             <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Modele/Personne.java</file>
             <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Modele/Professeur.java</file>
             <file>file:/C:/Users/AYMERIC/Documents/NetBeansProjects/ProjetJAVA/src/Modele/Matiere.java</file>

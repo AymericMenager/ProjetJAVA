@@ -13,9 +13,9 @@ public class Classe {
     private int idClasse;
     private String nomClasse;
     private String niveauClasse;
-    private String idAnneeSco;
+    private int idAnneeSco;
     
-    public Classe(int _idClasse, String _nomClasse, String _niveauClasse, String _idAnneeSco){
+    public Classe(int _idClasse, String _nomClasse, String _niveauClasse, int _idAnneeSco){
         idClasse = _idClasse;
         nomClasse = _nomClasse;
         niveauClasse = _niveauClasse;
@@ -46,11 +46,11 @@ public class Classe {
         this.niveauClasse = niveauClasse;
     }
 
-    public String getIdAnneeSco() {
+    public int getIdAnneeSco() {
         return idAnneeSco;
     }
 
-    public void setIdAnneeSco(String idAnneeSco) {
+    public void setIdAnneeSco(int idAnneeSco) {
         this.idAnneeSco = idAnneeSco;
     }
 }

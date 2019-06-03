@@ -191,13 +191,13 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
      */
     private void remplirRequetesMaj() {
         // Requêtes d'insertion
-        maconnexion.ajouterRequeteMaj("INSERT INTO annee_scolaire (IdAnneeSco,Annee_deb,Anne_fin) VALUES (4,2020,2021);");
+        maconnexion.ajouterRequeteMaj("INSERT INTO annee_scolaire (IdAnneeSco,Annee_deb,Anne_fin) VALUES (3,2020,2021);");
 
         // Requêtes de modification
-        maconnexion.ajouterRequeteMaj("UPDATE Dept SET loc='Eiffel' WHERE loc='Paris';");
+       maconnexion.ajouterRequeteMaj("UPDATE annee_scolaire SET Annee_deb=2022 WHERE Annee_deb=2020;");
 
         // Requêtes de suppression
-        maconnexion.ajouterRequeteMaj("DELETE FROM Dept WHERE loc='Eiffel';");
+        maconnexion.ajouterRequeteMaj("DELETE FROM annee_scolaire WHERE Annee_deb=2022;");
 
     }
 
@@ -309,8 +309,8 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
                     maconnexion = new Connexion(nameBDDTexte.getText(), "root", "");
 
                     // effacer les listes de tables et de requêtes
-                    listeDeTables.removeAll();
-                    listeDeRequetes.removeAll();
+                  //  listeDeTables.removeAll();
+                   // listeDeRequetes.removeAll();
 
                     // initialisation de la liste des requetes de selection et de MAJ
                     remplirTables();
