@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package Vue;
 
 /*
@@ -24,13 +25,15 @@ import java.util.logging.Logger;
  *
  * @author segado
  */
-public class Fenetre extends JFrame implements ActionListener, ItemListener {
+
+//public class Fenetre extends JFrame implements ActionListener, ItemListener {
+
     /*
      * Attribut privés : objets de Connexion, AWT et Swing
      * 
      */
 
-    private Connexion maconnexion;
+/*    private Connexion maconnexion;
     private final JLabel tab, req, res, lignes;
     private final JLabel nameECE, passwdECE, loginBDD, passwdBDD, nameBDD, requeteLabel;
     private final JTextField nameECETexte, loginBDDTexte, requeteTexte, nameBDDTexte;
@@ -39,11 +42,11 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
     private final java.awt.List listeDeTables, listeDeRequetes;
     private final JTextArea fenetreLignes, fenetreRes;
     private final JPanel p0, p1, nord, p2, p3;
-
+*/
     /**
      * Constructeur qui initialise tous les objets graphiques de la fenetre
      */
-    public Fenetre() {
+/*    public Fenetre() {
 
         // creation par heritage de la fenetre
         super("Projet d'utilisation de JDBC dans MySQL");
@@ -161,20 +164,20 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
             }
         });
     }
-
+*/
     /**
      * Méthode privée qui initialise la liste des tables
      */
-    private void remplirTables() {
+/*    private void remplirTables() {
         maconnexion.ajouterTable("eleve");
         maconnexion.ajouterTable("professeur");
         maconnexion.ajouterTable("classe");
     }
-
+*/
     /**
      * Méthode privée qui initialise la liste des requetes de selection
      */
-    private void remplirRequetes() {
+/*    private void remplirRequetes() {
         maconnexion.ajouterRequete("SELECT * FROM eleve;");
          maconnexion.ajouterRequete("SELECT * FROM classe;");
           maconnexion.ajouterRequete("SELECT * FROM professeur;");
@@ -184,20 +187,20 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
         maconnexion.ajouterRequete("SELECT hiredate, empno, ename FROM Emp WHERE (((hiredate)>='1981-05-01' And (hiredate)<'1981-05-31'))ORDER BY hiredate;");
         maconnexion.ajouterRequete("SELECT ename, job FROM Emp ORDER BY job;");
         maconnexion.ajouterRequete("SELECT DISTINCT dname, job FROM Dept, Emp WHERE Dept.deptno=Emp.deptno AND job='Clerk';");*/
-    }
+    
 
     /**
      * Méthode privée qui initialise la liste des requetes de MAJ
      */
-    private void remplirRequetesMaj() {
+ /*   private void remplirRequetesMaj() {
         // Requêtes d'insertion
-        maconnexion.ajouterRequeteMaj("INSERT INTO annee_scolaire (IdAnneeSco,Annee_deb,Anne_fin) VALUES (3,2020,2021);");
+        maconnexion.ajouterRequeteMaj("INSERT INTO annee_scolaire (IdAnneeSco,Annee_deb,Anne_fin) VALUES (4,2020,2021);");
 
         // Requêtes de modification
-       maconnexion.ajouterRequeteMaj("UPDATE annee_scolaire SET Annee_deb=2022 WHERE Annee_deb=2020;");
+        maconnexion.ajouterRequeteMaj("UPDATE Dept SET loc='Eiffel' WHERE loc='Paris';");
 
         // Requêtes de suppression
-        maconnexion.ajouterRequeteMaj("DELETE FROM annee_scolaire WHERE Annee_deb=2022;");
+        maconnexion.ajouterRequeteMaj("DELETE FROM Dept WHERE loc='Eiffel';");
 
     }
 
@@ -205,7 +208,7 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
      *
      * Afficher les tables
      */
-    public void afficherTables() {
+/*   public void afficherTables() {
         for (String table : maconnexion.tables) {
             listeDeTables.add(table);
         }
@@ -215,7 +218,7 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
      *
      * Afficher les lignes de la table sélectionnée
      */
-    public void afficherLignes(String nomTable) {
+ /*   public void afficherLignes(String nomTable) {
         try {
             ArrayList<String> liste;
 
@@ -248,12 +251,12 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
 
         }
     }
-
+*/
     /**
      *
      * Afficher les requetes de selection et de MAJ dans la fenetre
      */
-    public void afficherRequetes() {
+/*    public void afficherRequetes() {
         for (String requete : maconnexion.requetes) {
             listeDeRequetes.add(requete);
         }
@@ -265,7 +268,7 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
      *
      * @param requeteSelectionnee
      */
-    public ArrayList<String> afficherRes(String requeteSelectionnee) throws SQLException {
+ /*   public ArrayList<String> afficherRes(String requeteSelectionnee) throws SQLException {
         ArrayList<String> liste = null;
         try {
 
@@ -295,7 +298,7 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
      *
      * @param evt
      */
-    @Override
+ /*   @Override
     @SuppressWarnings("CallToThreadDumpStack")
     public void actionPerformed(ActionEvent evt) {
         Object source = evt.getSource();
@@ -309,8 +312,8 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
                     maconnexion = new Connexion(nameBDDTexte.getText(), "root", "");
 
                     // effacer les listes de tables et de requêtes
-                  //  listeDeTables.removeAll();
-                   // listeDeRequetes.removeAll();
+                    listeDeTables.removeAll();
+                    listeDeRequetes.removeAll();
 
                     // initialisation de la liste des requetes de selection et de MAJ
                     remplirTables();
@@ -370,7 +373,7 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
      * Pour gerer les actions sur items d'une liste on utilise la methode
      * itemStateChanged
      */
-    @Override
+ /*   @Override
     @SuppressWarnings("CallToThreadDumpStack")
     public void itemStateChanged(ItemEvent evt) {
         // sélection d'une requete et afficher ses résultats
@@ -389,3 +392,4 @@ public class Fenetre extends JFrame implements ActionListener, ItemListener {
         }
     }
 }
+*/ 

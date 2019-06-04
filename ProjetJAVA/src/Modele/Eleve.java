@@ -15,8 +15,8 @@ public class Eleve extends Personne  {
     private int idClasse;
     private int idEleve;
     
-    public Eleve(int _idPersonne,  String _type_pers, String _nom_pers, String _prenom_pers, GregorianCalendar _dob, int _idClasse, int _idEleve){
-        super(_idPersonne, _type_pers, _nom_pers, _prenom_pers,_dob );
+    public Eleve(int _idPersonne,  String _type_pers, String _nom_pers, String _prenom_pers, int _idClasse, int _idEleve){
+        super(_idPersonne, _type_pers, _nom_pers, _prenom_pers );
         idClasse = _idClasse;
         idEleve = _idEleve;
     }

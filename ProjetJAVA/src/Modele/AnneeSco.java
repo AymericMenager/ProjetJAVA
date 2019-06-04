@@ -22,5 +22,35 @@ public class AnneeSco {
      public AnneeSco(int _idAnneeSco){
         idAnneeSco = _idAnneeSco;
     }
+
+    public AnneeSco() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getIdAnneeSco() {
+        return idAnneeSco;
+    }
+
+    public void setIdAnneeSco(int idAnneeSco) {
+        this.idAnneeSco = idAnneeSco;
+    }
+
+    public int getAnnee_deb() {
+        return annee_deb;
+    }
+
+    public void setAnnee_deb(int annee_deb) {
+        this.annee_deb = annee_deb;
+    }
+
+    public int getAnnee_fin() {
+        return annee_fin;
+    }
+
+    public void setAnnee_fin(int annee_fin) {
+        this.annee_fin = annee_fin;
+    }
+
+    
     
 }
