@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Modele.Personne;
 import Modele.Professeur;
 import java.sql.Connection;
 
@@ -40,6 +41,11 @@ public class ProfesseurDAO extends DAO<Professeur>{
 
     @Override
     public Professeur returnClasse(String nom, String niveau) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int returnMaxID() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

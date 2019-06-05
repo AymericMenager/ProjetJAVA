@@ -42,7 +42,7 @@ public class ClasseDAO extends DAO<Classe>{
        try {
             ResultSet resultat = this.connect.createStatement(
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM classe WHERE NomClasse = " + nom+" AND Niveau = "+niveau);
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM classe WHERE NomClasse ="+nom+" AND Niveau="+niveau);
 
             if (resultat.first()) {
                 classe = new Classe(resultat.getInt("IdClasse"), nom, resultat.getString("Niveau"), resultat.getInt("IdAnneeSco"));
@@ -52,6 +52,28 @@ public class ClasseDAO extends DAO<Classe>{
             e.printStackTrace();
         }
         return classe;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public int returnMaxID(){
+        Classe classe = new Classe();
+        try{ResultSet resultat = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT MIN(IdClasse) FROM classe");
+
+            if (resultat.first()) {
+                classe = new Classe(resultat.getInt("IdClasse"), resultat.getString("Nom"), resultat.getString("Niveau"), resultat.getInt("IdAnneeSco"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(classe.getIdClasse()>=0)
+        return classe.getIdClasse();
+        else{
+            return -1;
+        }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

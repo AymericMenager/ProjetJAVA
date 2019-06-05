@@ -7,6 +7,8 @@ package Vue;
 
 import DAO.DAO;
 import DAO.FactoryDAO;
+import Modele.Classe;
+import Modele.Eleve;
 import Modele.Personne;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -51,7 +53,7 @@ public class Fenetre extends JFrame implements ActionListener {
     private final JPanel panel_menu, grid_menu;
 
     //Attributs de la page de résultat de la recherche
-    private final JPanel panel_result, grid_tab, grid_result, tableau_eleve;
+    private final JPanel panel_result, grid_tab, grid_result, eleve_display;
     private final JLabel title_result, id_eleve_txt, nom_eleve_txt, prenom_eleve_txt, niveau_txt, nom_classe_txt, annee_sco_txt;
 
     //Attributs de la page de mise à jour
@@ -233,7 +235,7 @@ public class Fenetre extends JFrame implements ActionListener {
         panel_result.setBackground(Color.BLUE);
         grid_result = new JPanel(new GridLayout(3, 1));
         grid_result.setBackground(Color.BLUE);
-        tableau_eleve = new JPanel();
+        eleve_display = new JPanel();
 
         //Page de mise à jour
         grid_maj = new JPanel(new GridLayout(3, 1));
@@ -305,6 +307,7 @@ public class Fenetre extends JFrame implements ActionListener {
         grid_tab.add(nom_classe_txt);
         grid_tab.add(annee_sco_txt);
         grid_result.add(grid_tab);
+        grid_result.add(eleve_display);
         panel_result.add(grid_result);
 
         //Page de mise à jour
@@ -479,40 +482,36 @@ public class Fenetre extends JFrame implements ActionListener {
 
     public void recherche_fenetre() {
         
+        eleve_display.removeAll();
         
+         DAO<Eleve> eleveDAO = FactoryDAO.getEleveDAO();
          DAO<Personne> persDAO = FactoryDAO.getPersonneDAO();
-                Personne personne = new Personne();
-                System.out.println(persDAO.find(10).getPrenom_pers());
-                
-                
-                
-                for(int i=0; i<60; i++){
-                    persDAO.find(i);
-                    System.out.println(persDAO.find(i).getPrenom_pers());
+         DAO<Classe>classeDAO = FactoryDAO.getClasseDAO();
+                Eleve eleve = new Eleve();
+
+               Object[][] donnees = new Object[2][5];
+               
+                 for(int i=0; i<2; i++){
+                    
+                    donnees[i][0] = eleveDAO.find(i).getIdPersonne();
+                    donnees[i][1]= persDAO.find( eleveDAO.find(i).getIdPersonne()).getNom_pers();
+                    donnees[i][2]= persDAO.find( eleveDAO.find(i).getIdPersonne()).getPrenom_pers();
+                     donnees[i][3]= classeDAO.find(eleveDAO.find(i).getIdClasse()).getNiveauClasse();
+                    donnees[i][4]= classeDAO.find(eleveDAO.find(i).getIdClasse()).getNomClasse();
+                   
                 }
-                
-                
-               Object[][] donnees = {  
-   {"Swing", "Astral", "standard", 
-      Color.red, Boolean.TRUE, "ING3"}, 
-   {"Swing", "Mistral", "standard", 
-      Color.yellow, Boolean.FALSE, "ING3"}, 
-   {"Gin", "Oasis", "standard", 
-      Color.blue, Boolean.FALSE, "ING3"},
-   {"Gin", "boomerang", "compétition", 
-      Color.green, Boolean.TRUE, "ING3"},
-   {"Advance", "Omega", "performance", 
-      Color.cyan, Boolean.TRUE, "ING3"}, 
-} ;
       
 String[] titreColonnes = { 
-   "Id","Nom","Prenom", "Classe", "Niveau", "Annee sco."}; 
+   "IdPersonne","Nom","Prenom", "Niveau", "NomClasse"}; 
 JTable jTable1 = new JTable(
       donnees, titreColonnes);
 
-        panel_result.add(jTable1);
+
+        eleve_display.add(jTable1);
+        grid_result.add(eleve_display);
         this.setContentPane(panel_result);
         this.revalidate();
+        
         
     }
 
@@ -522,6 +521,15 @@ JTable jTable1 = new JTable(
     }
 
     public void inscription_fenetre() {
+        
+         DAO<Eleve> eleveDAO = FactoryDAO.getEleveDAO();
+         DAO<Personne> persDAO = FactoryDAO.getPersonneDAO();
+         DAO<Classe>classeDAO = FactoryDAO.getClasseDAO();
+        Eleve eleve = new Eleve();
+        
+        
+        
+        
         this.setContentPane(panel_inscription);
         this.revalidate();
     }

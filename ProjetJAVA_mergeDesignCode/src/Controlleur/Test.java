@@ -42,7 +42,7 @@ public class Test {
                 String prenom;
 
                 System.out.println("Veuillez entrer son nom et son prénom, son niveau et sa classe");
-                id_pers = 0;
+                id_pers = 78;
                 type = "eleve";
                 nom = sc.next();
                 prenom = sc.next();
@@ -73,11 +73,11 @@ public class Test {
                           Classe classe = new Classe(idClasse_trash, nom_classe, niveau, idAnneeSco);
                     if(classeDAO.create(classe)){
                          System.out.println("la classe " + nom_classe + " a été créée avec succès");
-                         
+                  
                          int  idClasse =  classeDAO.returnClasse("'"+nom_classe+"'", "'"+niveau+"'").getIdClasse();
+                         id_pers = persDao.returnMaxID();
+                         System.out.println(id_pers);
                          Eleve eleve = new Eleve(id_pers, type,nom, prenom , idClasse,0);
-                        System.out.println(persDao.find(1).getNom_pers());
-                         System.out.println(classeDAO.find(1).getNomClasse());
                          DAO<Eleve> eleveDAO = FactoryDAO.getEleveDAO();
                          
                          if(eleveDAO.create(eleve)){

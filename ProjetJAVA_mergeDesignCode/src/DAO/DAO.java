@@ -26,6 +26,7 @@ public abstract class DAO <T>{
     public abstract boolean update (T obj); 
     public abstract T find (int id); 
     public abstract T returnClasse(String nom, String niveau); 
+    public abstract int returnMaxID();
 
     public boolean delete(DAO<Personne> persDAO) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -42,5 +42,10 @@ public class NotesDAO extends DAO<Notes>{
     public Notes returnClasse(String nom, String niveau) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public int returnMaxID() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

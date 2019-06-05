@@ -45,6 +45,8 @@ public class PersonneDAO extends DAO<Personne> {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return true;
     }
+    
+    
 
     @Override
     public boolean delete(Personne obj) {
@@ -91,6 +93,31 @@ public class PersonneDAO extends DAO<Personne> {
     @Override
     public Personne returnClasse(String nom, String niveau) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+
+    @Override
+    public int returnMaxID() {
+         Personne personne = new Personne();
+        try{ResultSet resultat = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT MAX(IdPersonne) FROM personne");
+
+        
+            if (resultat.first()) {
+                personne = new Personne(7/*Integer.parseInt(resultat.getString("IdPersonne"))*/, resultat.getString("Type_pers"), resultat.getString("Nom_pers"), resultat.getString("Prenom_pers"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if(personne.getIdPersonne()>=0)
+        return personne.getIdPersonne();
+        else{
+            return -1;
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
