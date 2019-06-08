@@ -31,7 +31,7 @@ public class EleveDAO extends DAO<Eleve> {
             // on veut créer la classe de l'élève 
             Statement statement = connect.createStatement();
             System.out.print("id personne de lobjet: "+obj.getIdPersonne());
-           statement.executeUpdate("INSERT INTO eleve(IdEleve, IdPersonne, IdClasse)"+" VALUES (NULL, "+obj.getIdPersonne()+", "+obj.getIdClasse()+")");
+            statement.executeUpdate("INSERT INTO eleve(IdEleve, IdPersonne, IdClasse)"+" VALUES (NULL, "+obj.getIdPersonne()+", "+obj.getIdClasse()+")");
             
           }catch (SQLException e )
         {
@@ -43,7 +43,17 @@ public class EleveDAO extends DAO<Eleve> {
 
     @Override
     public boolean delete(Eleve obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            Statement statement = connect.createStatement(); 
+            System.out.println(obj.getIdEleve());
+            statement.executeUpdate("DELETE FROM eleve WHERE IdEleve = "+obj.getIdEleve()+" "); 
+            
+        }catch(SQLException e)
+        {
+            e.getStackTrace(); 
+            return false; 
+        }return true ; 
     }
 
     @Override

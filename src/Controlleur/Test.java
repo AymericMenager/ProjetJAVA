@@ -140,6 +140,26 @@ public class Test {
             // 2. enregistrer ces mofifications dans la base de donnée 
             // comme ca ne va mdifier que la personne il faut aussi que ca apparesse dans la table de l'élève dans la base de donnée 
         */
+            
+            DAO<Personne> persDAO = FactoryDAO.getPersonneDAO();
+            DAO<Eleve> eleveDAO = FactoryDAO.getEleveDAO();
+            
+            // recherche l'id de l'élève à supprimer 
+            System.out.println("entrer l'id d'un élève à modifier : "); 
+            int id_eleve_supp = sc.nextInt(); 
+            int id_recupere = eleveDAO.find(id_eleve_supp).getIdPersonne(); 
+            System.out.println("Voici l'idPersonne de l'élève : "+id_recupere);
+            
+            if (eleveDAO.delete(eleveDAO.find(id_eleve_supp)))
+            {
+                persDAO.delete(persDAO.find(id_recupere)); 
+                System.out.println("l'eleve et la personne ont ete supprimés");
+            }else {
+                System.out.println("Le delete BUG"); 
+            }
+            
+           
+            
         
 
         //Fenetre f = new Fenetre();
