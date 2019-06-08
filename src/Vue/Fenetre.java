@@ -60,7 +60,7 @@ public class Fenetre extends JFrame implements ActionListener {
 
     //Attributs de la page de mise à jour
     private final JPanel panel_maj, grid_maj;
-    private final JButton inscription_eleve, editer_note, creer_bulletin, update_eleve;
+    private final JButton inscription_eleve, editer_note, creer_bulletin, update_eleve, delete_eleve;
     
     //Attribut de la page inscription eleve
     private final JPanel panel_inscription, form_inscription, grid_inscription;
@@ -83,6 +83,12 @@ public class Fenetre extends JFrame implements ActionListener {
     private final JButton Rechercher_id_eleve_modifie, Update_eleve_modifie;
     private final JTextField selectionner_id_eleve, nom_eleve, prenom_eleve; 
     private final JLabel titre_selection_eleve_mofifie_txt,id_recherche_eleve_modifier_txt, title_modification_eleve_txt, nom_modifier_eleve_txt, prenom_modifier_eleve_txt ; 
+    
+    //Attribut de suppression de l'eleve
+    private final JPanel container_suppression, form_suppression, grid_suppression; 
+    private final JButton supprimer_eleve; 
+    private JTextField selection_id_eleve_supprime; 
+    private JLabel titre_suppression_eleve_txt, id_eleve_supprimer_txt; 
     
     
     
@@ -122,7 +128,8 @@ public class Fenetre extends JFrame implements ActionListener {
         inscription_eleve = new JButton("Inscrire un élève");
         editer_note = new JButton("Entrer/Modifier une note");
         creer_bulletin = new JButton("Creer/Modifier le bulletin d'un élève");
-        update_eleve = new JButton("Modifier un eleve"); 
+        update_eleve = new JButton("Modifier un élève"); 
+        delete_eleve = new JButton("Supprmier un élève"); 
 
         //Page inscription eleve
         submit_inscription = new JButton("Inscrire");
@@ -136,6 +143,9 @@ public class Fenetre extends JFrame implements ActionListener {
         //Page update eleve
         Rechercher_id_eleve_modifie = new JButton("Rechercher"); 
         Update_eleve_modifie = new JButton("Update"); 
+        
+        //Page suppression de l'eleve 
+        supprimer_eleve = new JButton("Supprimer"); 
         
 
         // CREATION DES EDIT-TEXT
@@ -164,10 +174,12 @@ public class Fenetre extends JFrame implements ActionListener {
         appreciation_note = new JTextField(8);
         
         //Page update eleve       
-        selectionner_id_eleve = new JTextField (8); 
-       
+        selectionner_id_eleve = new JTextField (8);        
         nom_eleve = new JTextField (8); 
         prenom_eleve = new JTextField (8); 
+        
+        //Page de suppression de l'eleve 
+        selection_id_eleve_supprime = new JTextField (8); 
         
         
         // CREATION DES LABELS (Textes)
@@ -251,6 +263,16 @@ public class Fenetre extends JFrame implements ActionListener {
         nom_modifier_eleve_txt.setForeground(Color.WHITE);
         prenom_modifier_eleve_txt = new JLabel("Prenom"); 
         prenom_modifier_eleve_txt.setForeground(Color.WHITE);
+        
+        //Page suppression de l'eleve 
+        titre_suppression_eleve_txt = new JLabel ("Supprimer un élève de l'ecole", JLabel.CENTER);
+        titre_suppression_eleve_txt.setFont(font);
+        titre_suppression_eleve_txt.setForeground(Color.WHITE);
+        id_eleve_supprimer_txt = new JLabel("Id de l'eleve : ");
+        id_eleve_supprimer_txt.setFont(font);
+        id_eleve_supprimer_txt.setForeground(Color.WHITE);
+        
+        
 
         // CREATION DES PANNEAUX
         //Page de connexion
@@ -279,7 +301,7 @@ public class Fenetre extends JFrame implements ActionListener {
         eleve_display = new JPanel();
 
         //Page de mise à jour
-        grid_maj = new JPanel(new GridLayout(4, 1));
+        grid_maj = new JPanel(new GridLayout(5, 1));
         grid_maj.setBackground(Color.BLUE);
         panel_maj = new JPanel();
         panel_maj.setBackground(Color.BLUE);
@@ -331,6 +353,13 @@ public class Fenetre extends JFrame implements ActionListener {
         panel_nom_prenom = new JPanel(new GridLayout(4, 1)); 
         panel_nom_prenom.setBackground(Color.BLUE);
         
+        //Page de suppression de l'élève 
+        container_suppression = new JPanel();
+        container_suppression.setBackground(Color.BLUE);
+        form_suppression = new JPanel (new GridLayout(2,2)); 
+        form_suppression.setBackground(Color.BLUE);
+        grid_suppression = new JPanel (new GridLayout(2,1));
+        grid_suppression.setBackground(Color.BLUE);
         
        
 
@@ -379,6 +408,7 @@ public class Fenetre extends JFrame implements ActionListener {
         grid_maj.add(editer_note);
         grid_maj.add(creer_bulletin);
         grid_maj.add(update_eleve); 
+        grid_maj.add(delete_eleve); 
         panel_maj.add(grid_maj);
 
         //Page de inscription eleve
@@ -452,6 +482,15 @@ public class Fenetre extends JFrame implements ActionListener {
         form_modifier.add(panel_nom_prenom); 
         grid_layout_modif.add(form_modifier); 
         container_modifier.add(grid_layout_modif); 
+        
+        //Page de suppression de l'élève 
+        grid_suppression.add(titre_suppression_eleve_txt); 
+        form_suppression.add(id_eleve_supprimer_txt);
+        form_suppression.add(selection_id_eleve_supprime); 
+        form_suppression.add(supprimer_eleve); 
+        grid_suppression.add(form_suppression);
+        container_suppression.add(grid_suppression); 
+        
                 
         // ajout des listeners
         backFromResearchToMenu.addActionListener(new ActionListener() {
@@ -568,7 +607,7 @@ public class Fenetre extends JFrame implements ActionListener {
                 modifier_eleve(); 
                 //this.setContentPane(container_modifier); 
             }
-    }); 
+        }); 
         
         Rechercher_id_eleve_modifie.addActionListener(new ActionListener() {
             @Override
@@ -586,6 +625,23 @@ public class Fenetre extends JFrame implements ActionListener {
             }
 
         });
+        
+        delete_eleve.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                supprimer_eleve(); 
+                back_to_menu(); 
+                //this.setContentPane(container_modifier); 
+            }
+        }); 
+        
+        supprimer_eleve.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                delete_eleve(); 
+                //this.setContentPane(container_modifier); 
+            }
+        }); 
 
         // couleurs des objets graphiques
         // disposition geographique des panneaux
@@ -757,6 +813,32 @@ public class Fenetre extends JFrame implements ActionListener {
     public void modifier_eleve(){
         this.setContentPane(container_modifier);
         this.revalidate();
+    }
+    
+    
+    public void supprimer_eleve(){
+        this.setContentPane(container_suppression);
+        this.revalidate();
+    }
+    
+    public void delete_eleve(){
+        DAO<Personne> persDAO = FactoryDAO.getPersonneDAO();
+        DAO<Eleve> eleveDAO = FactoryDAO.getEleveDAO();
+
+        // recherche l'id de l'élève à supprimer 
+        System.out.println("entrer l'id d'un élève à modifier : "); 
+        int id_eleve_supp = Integer.parseInt(selection_id_eleve_supprime.getText());  //sc.nextInt(); 
+        int id_recupere = eleveDAO.find(id_eleve_supp).getIdPersonne(); 
+        System.out.println("Voici l'idPersonne de l'élève : "+id_recupere);
+
+        if (eleveDAO.delete(eleveDAO.find(id_eleve_supp)))
+        {
+            persDAO.delete(persDAO.find(id_recupere)); 
+            System.out.println("l'eleve et la personne ont ete supprimés");
+        }else {
+            System.out.println("Le delete BUG"); 
+        }
+
     }
 
     public void back_to_menu() {
