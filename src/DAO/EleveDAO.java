@@ -66,7 +66,7 @@ public class EleveDAO extends DAO<Eleve> {
     public Eleve find(int id) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
          
-          Eleve eleve = new Eleve();
+        Eleve eleve = new Eleve();
         try {
             DAO<Personne> persDao = FactoryDAO.getPersonneDAO();
             ResultSet resultat = this.connect.createStatement(

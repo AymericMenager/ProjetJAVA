@@ -8,6 +8,9 @@ package DAO;
 import Modele.Personne;
 import Modele.Professeur;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +30,18 @@ public class ProfesseurDAO extends DAO<Professeur>{
 
     @Override
     public boolean delete(Professeur obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            Statement statement = connect.createStatement(); 
+            System.out.println(obj.getIdProfesseur());
+            statement.executeUpdate("DELETE FROM professeur WHERE IdProf = "+obj.getIdProfesseur()+" "); 
+            
+        }catch(SQLException e)
+        {
+            e.getStackTrace(); 
+            return false; 
+            
+        }return true ; 
     }
 
     @Override
@@ -37,7 +51,23 @@ public class ProfesseurDAO extends DAO<Professeur>{
 
     @Override
     public Professeur find(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Professeur professeur = new Professeur();
+        try{
+            DAO<Personne> persDao = FactoryDAO.getPersonneDAO();
+            ResultSet resultat = this.connect.createStatement(
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY).executeQuery("SELECT * FROM professeur WHERE IdProf = " + id);
+
+            if (resultat.first()) {
+                professeur = new Professeur(resultat.getInt("IdPersonne"), persDao.find(resultat.getInt("IdPersonne")).getType_pers(),
+                        persDao.find(resultat.getInt("IdPersonne")).getNom_pers(), persDao.find(resultat.getInt("IdPersonne")).getPrenom_pers(), id);
+            }
+        }catch(SQLException e )
+        {
+            e.printStackTrace();
+        }
+        return professeur ;
     }
 
     @Override
