@@ -47,8 +47,9 @@ public class EleveDAO extends DAO<Eleve> {
     }
 
     @Override
-    public boolean update(Eleve obj) {
+    public boolean update(Eleve obj, String nom, String Prenom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
     @Override

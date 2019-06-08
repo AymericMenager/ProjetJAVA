@@ -30,7 +30,7 @@ public class BulletinDAO extends DAO<Bulletin>{
     }
 
     @Override
-    public boolean update(Bulletin obj) {
+    public boolean update(Bulletin obj, String nom, String Prenom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

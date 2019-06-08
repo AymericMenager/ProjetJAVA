@@ -24,7 +24,7 @@ public class Test {
         Fenetre fenetre = new Fenetre();
         
         
-        System.out.println("MENU");
+        /*System.out.println("MENU");
         System.out.println("1. Ajouter une personne élève ou professeur");
         System.out.println("2. Supprimer un élément de la table personne");
         System.out.println("ajout d'éleve et prof");
@@ -111,12 +111,36 @@ public class Test {
                 /*if (persDAO.delete(personne_sup))
                 {
                     System.out.println("la personne "+personne_sup.getPrenom_pers()+"a été supprimée avec succès\n");
-                }*/
+                }
                 break;
 
             case 3:
                 break;
         }
+*/         
+            Scanner sc = new Scanner(System.in);
+            
+            /*DAO<Personne> persDAO = FactoryDAO.getPersonneDAO();
+            // rechercher l'id de la personne à modifier 
+            System.out.println("entrer l'id dela pers");
+            int id_pers_update = sc.nextInt(); 
+            
+            Personne pers_id_update = persDAO.find(id_pers_update); // il cherche déjà les donners de la personne à modifier 
+            System.out.println(pers_id_update.getNom_pers()+" " +pers_id_update.getPrenom_pers());
+            
+            if(persDAO.update(pers_id_update))
+            {
+                System.out.println("modification de la base de donnée : " +pers_id_update.getNom_pers()+" " +pers_id_update.getPrenom_pers());
+            }else{
+                System.out.println("l'update BUG");
+            }
+            
+            // pour l'update 
+            // 1. lui appler l'id de l'élève donc de la personne à modifier avec toutes ses données afficher avant de les modifier : println()
+            // 2. enregistrer ces mofifications dans la base de donnée 
+            // comme ca ne va mdifier que la personne il faut aussi que ca apparesse dans la table de l'élève dans la base de donnée 
+        */
+        
 
         //Fenetre f = new Fenetre();
     }

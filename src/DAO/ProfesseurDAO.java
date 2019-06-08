@@ -31,7 +31,7 @@ public class ProfesseurDAO extends DAO<Professeur>{
     }
 
     @Override
-    public boolean update(Professeur obj) {
+    public boolean update(Professeur obj, String nom, String Prenom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

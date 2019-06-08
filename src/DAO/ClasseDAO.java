@@ -84,7 +84,7 @@ public class ClasseDAO extends DAO<Classe>{
     }
 
     @Override
-    public boolean update(Classe obj) {
+    public boolean update(Classe obj, String nom, String Prenom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -24,7 +24,7 @@ public abstract class DAO <T>{
     
     public abstract boolean create (T obj); 
     public abstract boolean delete (T obj);
-    public abstract boolean update (T obj); 
+    public abstract boolean update (T obj , String nom, String prenom); 
     public abstract T find (int id); 
     public abstract T returnClasse(String nom, String niveau); 
     public abstract int returnMaxID();

@@ -68,8 +68,20 @@ public class PersonneDAO extends DAO<Personne> {
     }
 
     @Override
-    public boolean update(Personne obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean update(Personne obj, String nom, String prenom) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            Statement statement = connect.createStatement(); 
+            Scanner sc = new Scanner(System.in); 
+            
+            statement.executeUpdate("UPDATE personne SET Nom_pers='"+nom+"', Prenom_pers ='"+prenom+"' "
+                    + "WHERE Nom_pers = '"+obj.getNom_pers()+"' AND Prenom_pers = '"+obj.getPrenom_pers()+"' ");// nom prenom 
+        }catch(SQLException e)
+        {
+            e.getStackTrace(); 
+            return false ; 
+        }
+        return true; 
     }
 
     @Override

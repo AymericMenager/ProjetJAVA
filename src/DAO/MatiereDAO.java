@@ -32,7 +32,7 @@ public class MatiereDAO extends DAO<Matiere> {
     }
 
     @Override
-    public boolean update(Matiere obj) {
+    public boolean update(Matiere obj, String nom, String Prenom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

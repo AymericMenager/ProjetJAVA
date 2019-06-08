@@ -30,7 +30,7 @@ public class TrimestreDAO extends DAO<Trimestre>{
     }
 
     @Override
-    public boolean update(Trimestre obj) {
+    public boolean update(Trimestre obj, String nom, String Prenom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

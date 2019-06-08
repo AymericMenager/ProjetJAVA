@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -59,8 +60,8 @@ public class Fenetre extends JFrame implements ActionListener {
 
     //Attributs de la page de mise à jour
     private final JPanel panel_maj, grid_maj;
-    private final JButton inscription_eleve, editer_note, creer_bulletin;
-
+    private final JButton inscription_eleve, editer_note, creer_bulletin, update_eleve;
+    
     //Attribut de la page inscription eleve
     private final JPanel panel_inscription, form_inscription, grid_inscription;
     private final JButton submit_inscription;
@@ -77,7 +78,16 @@ public class Fenetre extends JFrame implements ActionListener {
     private final JButton valider_ajout_note;
     private final JPanel panel_ajout_note, form_ajout_note, grid_ajout_note, validate_btn_note;
 
-    //A
+    //Attribut de la page de Modification de l'élève 
+    private final JPanel container_modifier,grid_layout_modif,form_recherche, form_modifier, panel_recherche, panel_nom_prenom ;
+    private final JButton Rechercher_id_eleve_modifie, Update_eleve_modifie;
+    private final JTextField selectionner_id_eleve, nom_eleve, prenom_eleve; 
+    private final JLabel titre_selection_eleve_mofifie_txt,id_recherche_eleve_modifier_txt, title_modification_eleve_txt, nom_modifier_eleve_txt, prenom_modifier_eleve_txt ; 
+    
+    
+    
+    
+    
     /**
      * Constructeur qui initialise tous les objets graphiques de la fenetre
      */
@@ -112,6 +122,7 @@ public class Fenetre extends JFrame implements ActionListener {
         inscription_eleve = new JButton("Inscrire un élève");
         editer_note = new JButton("Entrer/Modifier une note");
         creer_bulletin = new JButton("Creer/Modifier le bulletin d'un élève");
+        update_eleve = new JButton("Modifier un eleve"); 
 
         //Page inscription eleve
         submit_inscription = new JButton("Inscrire");
@@ -121,6 +132,11 @@ public class Fenetre extends JFrame implements ActionListener {
 
         //Page ajout note
         valider_ajout_note = new JButton("Valider");
+        
+        //Page update eleve
+        Rechercher_id_eleve_modifie = new JButton("Rechercher"); 
+        Update_eleve_modifie = new JButton("Update"); 
+        
 
         // CREATION DES EDIT-TEXT
         //Page de connexion
@@ -146,6 +162,14 @@ public class Fenetre extends JFrame implements ActionListener {
         annee_sco_ajout_note = new JTextField(8);
         valeur_ajout_note = new JTextField(8);
         appreciation_note = new JTextField(8);
+        
+        //Page update eleve       
+        selectionner_id_eleve = new JTextField (8); 
+       
+        nom_eleve = new JTextField (8); 
+        prenom_eleve = new JTextField (8); 
+        
+        
         // CREATION DES LABELS (Textes)
         //Page de Connexion
         Font font = new Font("Times New Roman", Font.BOLD, 30);
@@ -213,6 +237,20 @@ public class Fenetre extends JFrame implements ActionListener {
         valeur_ajout_note_txt.setForeground(Color.WHITE);
         appreciation_note_txt = new JLabel("Appréciation");
         appreciation_note_txt.setForeground(Color.WHITE);
+        
+        //Page update eleve 
+        titre_selection_eleve_mofifie_txt = new JLabel ("Veuillez selectionner l'Id d'un élève", JLabel.CENTER); 
+        titre_selection_eleve_mofifie_txt.setFont(font);
+        titre_selection_eleve_mofifie_txt.setForeground(Color.WHITE);
+        id_recherche_eleve_modifier_txt = new JLabel ("id de l'élève");
+        id_recherche_eleve_modifier_txt.setForeground(Color.WHITE); 
+        title_modification_eleve_txt = new JLabel ("Modifiez son Nom et Prénom", JLabel.CENTER);
+        title_modification_eleve_txt.setFont(font);
+        title_modification_eleve_txt.setForeground(Color.WHITE);
+        nom_modifier_eleve_txt = new JLabel ("Nom"); 
+        nom_modifier_eleve_txt.setForeground(Color.WHITE);
+        prenom_modifier_eleve_txt = new JLabel("Prenom"); 
+        prenom_modifier_eleve_txt.setForeground(Color.WHITE);
 
         // CREATION DES PANNEAUX
         //Page de connexion
@@ -241,7 +279,7 @@ public class Fenetre extends JFrame implements ActionListener {
         eleve_display = new JPanel();
 
         //Page de mise à jour
-        grid_maj = new JPanel(new GridLayout(3, 1));
+        grid_maj = new JPanel(new GridLayout(4, 1));
         grid_maj.setBackground(Color.BLUE);
         panel_maj = new JPanel();
         panel_maj.setBackground(Color.BLUE);
@@ -273,6 +311,28 @@ public class Fenetre extends JFrame implements ActionListener {
         validate_btn_note.setBackground(Color.BLUE);
         grid_ajout_note = new JPanel(new GridLayout(3, 1));
         grid_ajout_note.setBackground(Color.BLUE);
+        
+        //Page update eleve 
+        container_modifier = new JPanel(); 
+        container_modifier.setBackground(Color.BLUE);
+        
+        grid_layout_modif = new JPanel(new GridLayout(3, 1)); 
+        grid_layout_modif.setBackground(Color.BLUE);
+        
+        form_recherche = new JPanel(new GridLayout(4, 1)); 
+        form_recherche.setBackground(Color.BLUE);
+        
+        panel_recherche = new JPanel(new GridLayout(3, 1)); 
+        panel_recherche.setBackground(Color.BLUE);
+        
+        form_modifier = new JPanel(new GridLayout(2, 1));
+        form_modifier.setBackground(Color.BLUE); 
+        
+        panel_nom_prenom = new JPanel(new GridLayout(4, 1)); 
+        panel_nom_prenom.setBackground(Color.BLUE);
+        
+        
+       
 
         //AJOUT DES OBJETS GRAPHIQUES DANS LES PANNEAUX
         // Page de connexion
@@ -318,6 +378,7 @@ public class Fenetre extends JFrame implements ActionListener {
         grid_maj.add(inscription_eleve);
         grid_maj.add(editer_note);
         grid_maj.add(creer_bulletin);
+        grid_maj.add(update_eleve); 
         panel_maj.add(grid_maj);
 
         //Page de inscription eleve
@@ -368,7 +429,30 @@ public class Fenetre extends JFrame implements ActionListener {
 
         container.add(panel_note);
         container.add(panel_ajout_note);
-
+        
+        //Page update eleve 
+        
+        grid_layout_modif.add(titre_selection_eleve_mofifie_txt);
+        
+        panel_recherche.add(id_recherche_eleve_modifier_txt);
+        panel_recherche.add(selectionner_id_eleve);
+        panel_recherche.add(Rechercher_id_eleve_modifie); 
+        
+        form_recherche.add(panel_recherche); 
+        grid_layout_modif.add(form_recherche);
+        
+        form_modifier.add(title_modification_eleve_txt); 
+        
+        panel_nom_prenom.add(nom_modifier_eleve_txt); 
+        panel_nom_prenom.add(nom_eleve); 
+        panel_nom_prenom.add(prenom_modifier_eleve_txt); 
+        panel_nom_prenom.add(prenom_eleve); 
+        panel_nom_prenom.add(Update_eleve_modifie);
+        
+        form_modifier.add(panel_nom_prenom); 
+        grid_layout_modif.add(form_modifier); 
+        container_modifier.add(grid_layout_modif); 
+                
         // ajout des listeners
         backFromResearchToMenu.addActionListener(new ActionListener() {
             @Override
@@ -452,6 +536,8 @@ public class Fenetre extends JFrame implements ActionListener {
             }
 
         });
+        
+        
 
         research_eleve_note.addActionListener(new ActionListener() {
             @Override
@@ -474,6 +560,31 @@ public class Fenetre extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
 
             }
+        });
+        
+        update_eleve.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                modifier_eleve(); 
+                //this.setContentPane(container_modifier); 
+            }
+    }); 
+        
+        Rechercher_id_eleve_modifie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                update_eleve();
+            }
+
+        });
+        
+        Update_eleve_modifie.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                update_eleve();
+                back_to_menu(); 
+            }
+
         });
 
         // couleurs des objets graphiques
@@ -512,14 +623,17 @@ public class Fenetre extends JFrame implements ActionListener {
         ArrayList listID = new ArrayList();
         listID = eleveDAO.returnIDs();
         System.out.println("Taille de la liste: " + listID.size());
-        Object[][] donnees = new Object[size_table][5];
+        Object[][] donnees = new Object[listID.size()][5];
 
         //requete sql qui va compter le nombre de lignes -> taille (COUNT) => SELECT COUNT(*) FROM eleve
         //requete sql qui reccupere l'id des eleves => SELECT IdEleve FROM eleve
         //On stock ces id dans un arraylist
         //On rempli Object donnees aves les id tu tableau => for(int i=0; i<taille_table; i++)  find(ArrayList[i])
-        for (int i = 0; i < size_table; i++) {
-
+        
+        
+        for (int i = 0; i < listID.size(); i++) {
+            
+            System.out.println("taille de la table " +listID.size());
             donnees[i][0] = eleveDAO.find((int) listID.get(i)).getIdPersonne();
             donnees[i][1] = persDAO.find(eleveDAO.find((int) listID.get(i)).getIdPersonne()).getNom_pers();
             donnees[i][2] = persDAO.find(eleveDAO.find((int) listID.get(i)).getIdPersonne()).getPrenom_pers();
@@ -596,7 +710,7 @@ public class Fenetre extends JFrame implements ActionListener {
         DAO<Notes>noteDAO = FactoryDAO.getNotesDAO();
         DAO<Matiere>matiereDAO = FactoryDAO.getMatiereDAO();
         int id_matiere = matiereDAO.returnClasse("'" +matiere_ajout_note.getText() + "'"," ").getIdMatiere();
-        float valeur_note = (float)Integer.parseInt(valeur_ajout_note.getText());
+        float valeur_note = Float.parseFloat(valeur_ajout_note.getText());
         String appreciation = appreciation_note.getText();
         //(int _idNote, float _valeurNote, String _appreciation, int _idMatiere, int _idEleve
         
@@ -612,10 +726,42 @@ public class Fenetre extends JFrame implements ActionListener {
        
         
     }
+    
+    public void update_eleve(){
+        //this.setContentPane(container_modifier);
+       // this.revalidate();
+        
+        //Scanner sc = new Scanner(System.in);
+        int id_pers_update = Integer.parseInt(selectionner_id_eleve.getText());
+        DAO<Personne> persDAO = FactoryDAO.getPersonneDAO();
+            // rechercher l'id de la personne à modifier 
+        Personne pers_id_update = persDAO.find(id_pers_update); // il cherche déjà les donners de la personne à modifier 
+        System.out.println(pers_id_update.getNom_pers()+" " +pers_id_update.getPrenom_pers());
+        
+        String nom_modifie = nom_eleve.getText(); 
+        String prenom_modifie = prenom_eleve.getText(); 
+        
+        if(persDAO.update(pers_id_update, nom_modifie, prenom_modifie))
+        {
+            System.out.println("modification de la base de donnée : " +pers_id_update.getNom_pers()+" " +pers_id_update.getPrenom_pers());
+        }else{
+            System.out.println("l'update BUG");
+        }
+
+        // pour l'update 
+        // 1. lui appler l'id de l'élève donc de la personne à modifier avec toutes ses données afficher avant de les modifier : println()
+        // 2. enregistrer ces mofifications dans la base de donnée 
+        // comme ca ne va mdifier que la personne il faut aussi que ca apparesse dans la table de l'élève dans la base de donnée 
+    }
+    
+    public void modifier_eleve(){
+        this.setContentPane(container_modifier);
+        this.revalidate();
+    }
 
     public void back_to_menu() {
         this.setContentPane(panel_menu);
         this.revalidate();
     }
-
+    
 }

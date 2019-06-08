@@ -34,7 +34,7 @@ public class AnneeScoDAO extends DAO<AnneeSco>{
     }
 
     @Override
-    public boolean update(AnneeSco obj) {
+    public boolean update(AnneeSco obj, String nom, String prenom) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -77,6 +77,8 @@ public class AnneeScoDAO extends DAO<AnneeSco>{
     public ArrayList returnIDs() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
     
     
 }
